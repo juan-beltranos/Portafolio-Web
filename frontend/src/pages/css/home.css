@@ -1,0 +1,58 @@
+:root {
+    --blanco: #ffffff;
+    --primario: #FFC107;
+    --secundario: #0097A7;
+    --gris: #757575;
+    --oscuro: #212121;
+}
+
+.hero {
+    height: 100vh;
+    position: relative;
+}
+
+.contenido-hero {
+    background-image: url('../../img/hero.jpg');
+    height: 100vh;
+	text-align: center;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contenido-hero:before {
+	content:'';
+	position: absolute;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.6);
+}
+
+.contenido-hero h1, 
+.contenido-hero p {
+    color: var(--blanco);
+    position: relative;
+}
+.boton {
+    background-color: rgb(173, 15, 15);
+    color: var(--blanco);
+    margin-top: .5rem;
+    padding: .5rem 3rem;
+    border-radius: 5px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    border:none;
+    position: relative;
+}
+.boton:hover{
+    cursor: pointer;
+    background-color: rgb(141, 10, 10);
+}
