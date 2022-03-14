@@ -1,0 +1,31 @@
+h2 {
+  color: var(--primario);
+}
+.resume__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.resume__fecha {
+  width: 150px;
+  background-color: rgb(94, 93, 93);
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+}
+.cv {
+  flex: none;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .resume__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cv {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+}

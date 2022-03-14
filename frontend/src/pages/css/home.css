@@ -24,6 +24,9 @@
     align-items: center;
     justify-content: center;
 }
+.contenido-hero p{
+    font-weight: bold;
+}
 .contenido-hero:before {
 	content:'';
 	position: absolute;
