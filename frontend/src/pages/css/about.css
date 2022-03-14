@@ -1,0 +1,49 @@
+.about__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__img {
+  width: 400px;
+  height: 400px;
+}
+.about__item__info {
+    display: flex;
+}
+.about__item p {
+  font-size: 18px;
+}
+
+.about__item__info ul li {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.about__item__info ul li a{
+    color: brown;
+    margin-left: 5px;
+}
+.about__item_habilidades h3{
+    color: rgb(33, 33, 153);
+}
+.about__item__info_habilidaes ul li{
+    text-align: center;
+    list-style: none;
+    background-color:brown;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 8px;
+
+}
+.about__item__info_habilidaes ul li:hover{
+    background-color:rgb(105, 31, 31);
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .about__container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+  }
+}
