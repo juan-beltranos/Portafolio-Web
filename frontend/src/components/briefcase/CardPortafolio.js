@@ -1,17 +1,36 @@
 import React from "react";
-import hero from "../../img/hero.jpg";
+import { ToastContainer, toast } from 'react-toastify';
 
-export const CardPortafolio = () => {
+import { projectApi } from "../../api/portafolioApi";
+import hero from '../../img/hero.jpg'
+
+import '../briefcase/CardPortafolio.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+export const CardPortafolio = ({ project }) => {
+
+  const deleteProject = async (id) => {
+    const res = await  projectApi.post(`/proyectos/delete?id=${id}`)
+    toast(res.data.mensaje);
+  }
+
   return (
     <div className="card">
-      <img src={hero} alt="img-profile" className="about__img" />
-      <h3>Aplicacion web</h3>
+      <img src={hero} alt={project.nombre} className="about__img" />
+      <h3>{project.nombre}</h3>
       <div className="card_body">
-        <small>Fecha: 14/03/2022</small>
-        <p>Descripcion: Aplicacion de portafolio</p>
-        <p>Tecnologias: html css js</p>
-        <p>Url: http://localhost:3000/briefcase</p>
+        <small>Fecha: {project.fecha}</small>
+        <p>Descripcion: {project.descripcion}</p>
+        <p>Tecnologias:{project.tecnologias}</p>
+        <p>Url: {project.url}</p>
       </div>
+      <div className="container-buttons">
+        <button className="btn-editar">Editar</button>
+        <button className="btn-eliminar" onClick={() => deleteProject(project.id)}>Eliminar</button>
+      </div>
+      <ToastContainer />
     </div>
   );
+
 };

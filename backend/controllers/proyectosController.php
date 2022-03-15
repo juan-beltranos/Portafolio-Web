@@ -45,7 +45,7 @@ class proyectosController
             $imagen = $_FILES['imagen'];
 
             // Validar campos vacios
-            if (!$proyecto->nombre || !$imagen['name'] || $imagen['error'] || !$proyecto->descripcion || !$proyecto->url  || !$proyecto->fecha) {
+            if (!$proyecto->nombre || !$imagen['name'] || $imagen['error'] || !$proyecto->descripcion || !$proyecto->url  || !$proyecto->fecha || !$proyecto->tecnologias) {
                 $res = [
                     'tipo' => 'error',
                     'msg' => 'Ningun campo puede ir vacio'
