@@ -1,5 +1,5 @@
 import React from "react";
-import hero from "../img/hero.jpg";
+import { CardPortafolio } from "../components/briefcase/CardPortafolio";
 import "./css/briefcase.css";
 
 export const Briefcase = () => {
@@ -7,66 +7,7 @@ export const Briefcase = () => {
     <div className="container">
       <h1>MIS TRABAJOS</h1>
       <div className="briefcase__grid">
-        <div className="card">
-          <img src={hero} alt="img-profile" className="about__img" />
-          <h3>Aplicacion web</h3>
-          <div className="card_body">
-            <small>Fecha: 14/03/2022</small>
-            <p>Descripcion: Aplicacion de portafolio</p>
-            <p>Tecnologias: html css js</p>
-            <p>Url: http://localhost:3000/briefcase</p>
-          </div>
-        </div>
-        <div className="card">
-          <img src={hero} alt="img-profile" className="about__img" />
-          <h3>Aplicacion web</h3>
-          <div className="card_body">
-            <small>Fecha: 14/03/2022</small>
-            <p>Descripcion: Aplicacion de portafolio</p>
-            <p>Tecnologias: html css js</p>
-            <p>Url: http://localhost:3000/briefcase</p>
-          </div>
-        </div>
-        <div className="card">
-          <img src={hero} alt="img-profile" className="about__img" />
-          <h3>Aplicacion web</h3>
-          <div className="card_body">
-            <small>Fecha: 14/03/2022</small>
-            <p>Descripcion: Aplicacion de portafolio</p>
-            <p>Tecnologias: html css js</p>
-            <p>Url: http://localhost:3000/briefcase</p>
-          </div>
-        </div>
-        <div className="card">
-          <img src={hero} alt="img-profile" className="about__img" />
-          <h3>Aplicacion web</h3>
-          <div className="card_body">
-            <small>Fecha: 14/03/2022</small>
-            <p>Descripcion: Aplicacion de portafolio</p>
-            <p>Tecnologias: html css js</p>
-            <p>Url: http://localhost:3000/briefcase</p>
-          </div>
-        </div>
-        <div className="card">
-          <img src={hero} alt="img-profile" className="about__img" />
-          <h3>Aplicacion web</h3>
-          <div className="card_body">
-            <small>Fecha: 14/03/2022</small>
-            <p>Descripcion: Aplicacion de portafolio</p>
-            <p>Tecnologias: html css js</p>
-            <p>Url: http://localhost:3000/briefcase</p>
-          </div>
-        </div>
-        <div className="card">
-          <img src={hero} alt="img-profile" className="about__img" />
-          <h3>Aplicacion web</h3>
-          <div className="card_body">
-            <small>Fecha: 14/03/2022</small>
-            <p>Descripcion: Aplicacion de portafolio</p>
-            <p>Tecnologias: html css js</p>
-            <p>Url: http://localhost:3000/briefcase</p>
-          </div>
-        </div>
+        <CardPortafolio />
       </div>
     </div>
   );

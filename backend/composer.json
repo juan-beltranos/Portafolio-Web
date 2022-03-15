@@ -12,5 +12,7 @@
             "name": "Sebastian"
         }
     ],
-    "require": {}
+    "require": {
+        "samayo/bulletproof": "4.0.*"
+    }
 }

@@ -14,7 +14,8 @@ class proyectosController
         echo json_encode(["data" => $proyectos]);
     }
 
-    public static function getProyectoId(Router $router){
+    public static function getProyectoId(Router $router)
+    {
 
         $proyecto = Proyectos::where('id', $_GET['id']);
 
@@ -40,7 +41,11 @@ class proyectosController
 
             $proyecto->sincronizar($_POST);
 
-            if (!$proyecto->nombre || !$proyecto->imagen || !$proyecto->descripcion || !$proyecto->url  || !$proyecto->fecha) {
+            // Tomar la imagen
+            $imagen = $_FILES['imagen'];
+
+            // Validar campos vacios
+            if (!$proyecto->nombre || !$imagen['name'] || $imagen['error'] || !$proyecto->descripcion || !$proyecto->url  || !$proyecto->fecha) {
                 $res = [
                     'tipo' => 'error',
                     'msg' => 'Ningun campo puede ir vacio'
@@ -48,6 +53,32 @@ class proyectosController
                 echo json_encode($res);
                 return;
             }
+
+            // Validar el tamaño de la imagen
+            $medida = 1000 * 1000;
+            if ($imagen['size'] > $medida) {
+                $res = [
+                    'tipo' => 'error',
+                    'msg' => 'La imagen es muy pesada'
+                ];
+                echo json_encode($res);
+                return;
+            }
+
+            // Subida de archivos
+            $carpetaImagenes = '../uploads/';
+
+            // Crear carpeta de imagenes
+            if (!is_dir($carpetaImagenes)) {
+                mkdir($carpetaImagenes);
+            }
+
+            // generar nombre unico
+            $nombreImagen = md5(uniqid(rand(), true)). ".jpg";
+
+            // Subir imagen
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen );
+            $proyecto->imagen = $nombreImagen;
 
             $proyecto->guardar();
 
@@ -112,7 +143,7 @@ class proyectosController
 
             $proyecto = $proyectoDelete->eliminar();
 
-            
+
             $resultado = [
                 'mensaje' => 'Eliminado Correctamente',
                 'tipo' => 'exito'
@@ -121,5 +152,4 @@ class proyectosController
             echo json_encode($resultado);
         }
     }
-
 }
