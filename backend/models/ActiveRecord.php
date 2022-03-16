@@ -97,7 +97,7 @@ class ActiveRecord {
         // Resultado de la consulta
         $resultado = self::$db->query($query);
        
-        echo json_encode($resultado);
+       // echo json_encode($resultado);
 
         return [
            'resultado' =>  $resultado,

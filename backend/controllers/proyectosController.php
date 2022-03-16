@@ -74,19 +74,18 @@ class proyectosController
             }
 
             // generar nombre unico
-            $nombreImagen = md5(uniqid(rand(), true)). ".jpg";
+            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
             // Subir imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen );
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
             $proyecto->imagen = $nombreImagen;
 
             $proyecto->guardar();
 
-            $respuesta = [
-                'tipo' => 'exito',
-                'mensaje' => 'Proyecto Creado Correctamente',
-            ];
-            echo json_encode($respuesta);
+            echo json_encode([
+                "tipo" => "exito",
+                "msg" => "Proyecto creado correctamente"
+            ]);
         }
     }
 

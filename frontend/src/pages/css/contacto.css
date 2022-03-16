@@ -57,17 +57,15 @@
 .campo input[type="tel"],
 .campo input[type="mail"],
 .campo input[type="password"],
+.campo input[type="url"],
+.campo input[type="date"],
+.campo input[type="file"],
 .campo textarea {
   width: 100%;
   padding: 0.5rem;
   border: none;
   border-radius: 0.5rem;
   outline: none;
+  margin-left: 5px;
 }
-@media (min-width: 768px) {
-  :is(.campo)
-    :is(input[type="text"], input[type="text"], input[type="tel"], input[type="mail"], textarea, input[type="password"]) {
-    flex: 1;
-  }
-  
-}
+

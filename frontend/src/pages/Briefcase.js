@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import { Link } from "react-router-dom";
 
 import { useProjects } from "../hooks/useProjects";
 import { CardPortafolio } from "../components/briefcase/CardPortafolio";
@@ -12,7 +13,7 @@ export const Briefcase = () => {
   return (
     <div className="container">
       <h1>MIS TRABAJOS</h1>
-      <button className="boton ">Nuevo proyecto</button>
+      <Link to="/create-project" className="boton mb-5">Nuevo proyecto</Link>
       <div className="briefcase__grid">
         {
           projects.map((project) => (
