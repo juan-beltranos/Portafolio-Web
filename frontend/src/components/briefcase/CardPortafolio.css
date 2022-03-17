@@ -29,3 +29,8 @@
     background-color: rgb(119, 31, 31);
     cursor: pointer;
   }
+
+  a {
+    text-decoration: none;
+    text-align: center;
+  }

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 import { ToastContainer, toast } from 'react-toastify';
 
 import { projectApi } from "../../api/portafolioApi";
@@ -10,9 +12,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const CardPortafolio = ({ project }) => {
 
+
   const deleteProject = async (id) => {
     const res = await  projectApi.post(`/proyectos/delete?id=${id}`)
     toast(res.data.mensaje);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+   
   }
 
   return (
@@ -26,7 +33,7 @@ export const CardPortafolio = ({ project }) => {
         <p>Url: {project.url}</p>
       </div>
       <div className="container-buttons">
-        <button className="btn-editar">Editar</button>
+        <Link to={`/edit-project/${project.id}`} className="btn-editar">Editar</Link>
         <button className="btn-eliminar" onClick={() => deleteProject(project.id)}>Eliminar</button>
       </div>
       <ToastContainer />

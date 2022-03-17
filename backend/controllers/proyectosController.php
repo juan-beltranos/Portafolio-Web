@@ -96,6 +96,8 @@ class proyectosController
             // Validar que el servicio exista
             $proyecto = Proyectos::where('id', $_GET['id']);
 
+            $imagen = $_FILES['imagen'];
+
             if (!$proyecto) {
                 $respuesta = [
                     'tipo' => 'error',
@@ -105,8 +107,32 @@ class proyectosController
                 return;
             }
 
+            // Subida de archivos
+            $carpetaImagenes = '../uploads/';
+
+            // Crear carpeta de imagenes
+            if (!is_dir($carpetaImagenes)) {
+                mkdir($carpetaImagenes);
+            }
+
+            $nombreImagen = '';
+
+            // Eliminar imagen previa
+            if ($imagen['name']) {
+                unlink($carpetaImagenes . $proyecto->imagen);
+                // generar nombre unico
+                $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+                // Subir imagen
+                move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+            } else {
+                $nombreImagen =  $proyecto->imagen;
+            }
+
             $proyectoPut = new Proyectos($_POST);
             $proyectoPut->id = $proyecto->id;
+            $proyectoPut->imagen = $nombreImagen;
+
             $resultado = $proyectoPut->actualizar();
 
             if ($resultado) {
@@ -137,11 +163,14 @@ class proyectosController
                 return;
             }
 
+            // Eliminar imagen previa
+            $carpetaImagenes = '../uploads/';
+            unlink($carpetaImagenes . $proyecto->imagen);
+
             $proyectoDelete = new Proyectos($_POST);
             $proyectoDelete->id = $proyecto->id;
 
             $proyecto = $proyectoDelete->eliminar();
-
 
             $resultado = [
                 'mensaje' => 'Eliminado Correctamente',

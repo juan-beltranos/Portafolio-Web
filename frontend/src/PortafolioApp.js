@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CreateProject } from "./components/briefcase/CreateProject";
+import { EditProject } from "./components/briefcase/EditProject";
 import { Header } from "./components/layout/Header";
 import { About } from "./pages/About";
 import { Briefcase } from "./pages/Briefcase";
@@ -23,7 +24,9 @@ export const PortafolioApp = () => {
           <Route path="/briefcase" element={<Briefcase />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Services />} />
+
           <Route path="/create-project" element={<CreateProject />} />
+          <Route path="/edit-project/:id" element={<EditProject />} />
         </Routes>
       </BrowserRouter>
     </div>
