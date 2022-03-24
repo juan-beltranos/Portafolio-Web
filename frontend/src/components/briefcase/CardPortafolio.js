@@ -24,7 +24,7 @@ export const CardPortafolio = ({ project }) => {
 
   return (
     <div className="card">
-      <img src={hero} alt={project.nombre} className="about__img" />
+      <img src={ `${project.imagen}`} alt={project.nombre} className="about__img" />
       <h3>{project.nombre}</h3>
       <div className="card_body">
         <small>Fecha: {project.fecha}</small>
