@@ -5,7 +5,7 @@ require 'database.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 // Habilitar cors
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin:*');
 
 // Conectarnos a la base de datos
 use Model\ActiveRecord;

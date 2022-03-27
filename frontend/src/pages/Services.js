@@ -27,9 +27,13 @@ export const Services = () => {
         },
       });
 
-      setAuth({
-        auth: true,
-      });
+      localStorage.setItem('auth', true)
+
+      if (localStorage.getItem("auth", true)) {
+        setAuth({
+          auth: true,
+        });
+      }
     } catch (error) {
       console.log(error);
     }

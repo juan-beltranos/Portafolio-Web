@@ -7,7 +7,7 @@ export const useProjects = () => {
 
   useEffect(() => {
     getProjects();
-  }, []);
+  }, [projects]);
 
   const getProjects = async () => {
     const res = await projectApi.get("/proyectos");

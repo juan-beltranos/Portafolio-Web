@@ -15,15 +15,12 @@ export const CardPortafolio = ({ project }) => {
   const deleteProject = async (id) => {
     const res = await projectApi.post(`/proyectos/delete?id=${id}`);
     toast(res.data.mensaje);
-    setTimeout(() => {
-      window.location.reload();
-    }, 1500);
   };
 
   return (
     <div className="card">
       <img
-        src={`${project.imagen}`}
+        src={"data:image/jpg;base64," + project.imagen}
         alt={project.nombre}
         className="about__img"
       />

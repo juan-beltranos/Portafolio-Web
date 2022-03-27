@@ -8,7 +8,6 @@ export const PortafolioProvider = (props) => {
     auth: false,
   });
   
-
   return (
       <PortafolioContext.Provider value={[auth, setAuth]}>
           {props.children}

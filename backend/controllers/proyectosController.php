@@ -42,10 +42,14 @@ class proyectosController
             $proyecto->sincronizar($_POST);
 
             // Tomar la imagen
-            $imagen = $_FILES['imagen'];
+            if (isset($_FILES['imagen']['name'])) {
+                $tamanoArchivo = $_FILES['imagen']['size'];
+                $imagenSubida = fopen($_FILES['imagen']['tmp_name'], 'r');
+                $binarioImmagen = fread($imagenSubida, $tamanoArchivo);
+            }
 
             // Validar campos vacios
-            if (!$proyecto->nombre || !$imagen['name'] || $imagen['error'] || !$proyecto->descripcion || !$proyecto->url  || !$proyecto->fecha || !$proyecto->tecnologias) {
+            if (!$proyecto->nombre ||  !$proyecto->descripcion || !$proyecto->url  || !$proyecto->fecha || !$proyecto->tecnologias) {
                 $res = [
                     'tipo' => 'error',
                     'msg' => 'Ningun campo puede ir vacio'
@@ -54,31 +58,31 @@ class proyectosController
                 return;
             }
 
-            // Validar el tamaño de la imagen
-            $medida = 1000 * 1000;
-            if ($imagen['size'] > $medida) {
-                $res = [
-                    'tipo' => 'error',
-                    'msg' => 'La imagen es muy pesada'
-                ];
-                echo json_encode($res);
-                return;
-            }
+            // // Validar el tamaño de la imagen
+            // $medida = 1000 * 1000;
+            // if ($imagen['size'] > $medida) {
+            //     $res = [
+            //         'tipo' => 'error',
+            //         'msg' => 'La imagen es muy pesada'
+            //     ];
+            //     echo json_encode($res);
+            //     return;
+            // }
 
-            // Subida de archivos
-            $carpetaImagenes = '../uploads/';
+            // // Subida de archivos
+            // $carpetaImagenes = '../uploads/';
 
-            // Crear carpeta de imagenes
-            if (!is_dir($carpetaImagenes)) {
-                mkdir($carpetaImagenes);
-            }
+            // // Crear carpeta de imagenes
+            // if (!is_dir($carpetaImagenes)) {
+            //     mkdir($carpetaImagenes);
+            // }
 
-            // generar nombre unico
-            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+            // // generar nombre unico
+            // $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
-            // Subir imagen
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-            $proyecto->imagen = $nombreImagen;
+            // // Subir imagen
+            // move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+            $proyecto->imagen = base64_encode($binarioImmagen);
 
             $proyecto->guardar();
 
@@ -96,7 +100,12 @@ class proyectosController
             // Validar que el servicio exista
             $proyecto = Proyectos::where('id', $_GET['id']);
 
-            $imagen = $_FILES['imagen'];
+            // Tomar la imagen
+            if (isset($_FILES['imagen']['name'])) {
+                $tamanoArchivo = $_FILES['imagen']['size'];
+                $imagenSubida = fopen($_FILES['imagen']['tmp_name'], 'r');
+                $binarioImmagen = fread($imagenSubida, $tamanoArchivo);
+            }
 
             if (!$proyecto) {
                 $respuesta = [
@@ -107,31 +116,31 @@ class proyectosController
                 return;
             }
 
-            // Subida de archivos
-            $carpetaImagenes = '../uploads/';
+            // // Subida de archivos
+            // $carpetaImagenes = '../uploads/';
 
-            // Crear carpeta de imagenes
-            if (!is_dir($carpetaImagenes)) {
-                mkdir($carpetaImagenes);
-            }
+            // // Crear carpeta de imagenes
+            // if (!is_dir($carpetaImagenes)) {
+            //     mkdir($carpetaImagenes);
+            // }
 
-            $nombreImagen = '';
+            // $nombreImagen = '';
 
-            // Eliminar imagen previa
-            if ($imagen['name']) {
-                unlink($carpetaImagenes . $proyecto->imagen);
-                // generar nombre unico
-                $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+            // // Eliminar imagen previa
+            // if ($imagen['name']) {
+            //     unlink($carpetaImagenes . $proyecto->imagen);
+            //     // generar nombre unico
+            //     $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
-                // Subir imagen
-                move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-            } else {
-                $nombreImagen =  $proyecto->imagen;
-            }
+            //     // Subir imagen
+            //     move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+            // } else {
+            //     $nombreImagen =  $proyecto->imagen;
+            // }
 
             $proyectoPut = new Proyectos($_POST);
             $proyectoPut->id = $proyecto->id;
-            $proyectoPut->imagen = $nombreImagen;
+            $proyectoPut->imagen = base64_encode($binarioImmagen);
 
             $resultado = $proyectoPut->actualizar();
 
