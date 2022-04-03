@@ -48,10 +48,6 @@ export const Resume = () => {
           <p>Desarrollo con frameworks como ReactJs</p>
         </div>
       </div>
-      <div className="cv">
-        <h1>Desacargue mi curriculum Aqui</h1>
-       <button type={"submit"} className="boton"> Desacargar</button>
-      </div>
     </div>
   );
 };

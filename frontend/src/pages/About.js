@@ -26,8 +26,9 @@ export const About = () => {
               <li><strong>Edad:</strong> 23</li>
             </ul>
           </div>
-          <p>Soy programador web desde hace más de 1 año, tengo amplio conocimiento y trabajo diariamente con tecnologías modernas como: HTML, CSS, JavaScript, ReactJS, NodeJS, MySQL,MongoDb, Bootstrap, Sass.
-          Me apasiona el mundo del desarrollo web,me gustan los retos y el aprendizaje continuo por eso comencé una compañia llamada WebCode, donde principalmente diseño y desarrollo sitios web con tecnologias Frontend y Backend. Me gusta combinar mi trabajo en diseño y programación; He realizado paginas web para distintas empresas de negocios de mi ciudad.</p>
+          <p>Soy ingeniero de software, analista programador de sistemas de computo, con un poco más de 2 años en el mundo del desarrollo de aplicaciones frontend y backend.
+          Durante mi último año me he dedicado al desarrollo freelance,  mientras tambien trabajo en una empresa de mi pais.
+          Me encanta programar y aprender las nuevas tecnologias del mundo del desarrollo, son mis pasatiempos favoritos que a su vez, es mi trabajo.</p>
         </div>
       
       </div>
