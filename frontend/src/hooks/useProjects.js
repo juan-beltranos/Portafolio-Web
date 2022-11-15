@@ -5,14 +5,16 @@ export const useProjects = () => {
 
   const [ projects, setProjects ] = useState([]);
 
-  useEffect(() => {
-    getProjects();
-  }, [projects]);
-
   const getProjects = async () => {
     const res = await projectApi.get("/proyectos");
+    console.log(res);
     setProjects(res.data.data);
   };
+
+  useEffect(() => {
+    getProjects();
+  }, []);
+
 
   return {
     projects,
